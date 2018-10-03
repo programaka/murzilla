@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+<header class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1>Murzilla makes posting recipes simple</h1>
+    <p>View our hand-picked recipes from all over the world</p>
+    <p>
+      <a href="/recipes/new" class="btn btn-primary btn-lg">Post Recipe</a>
+    </p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <% recipes.forEach(function(recipe){ %>
+      <div class="col-lg-4 col-sm-6">
+        <figure class="figure">
+          <!-- img-thumbnail class is another option to use for img -->
+          <img class="figure-img img-fluid rounded" src=<%= recipe.image %>>
+          <figcaption class="figure-caption text-center"><%= recipe.name %></figcaption>
+          <p class="text-center">
+            <a href="/recipes/<%= recipe._id %>" class="btn-link">More Info</a>
+          </p>
+        </figure>
+      </div>
+    
+    <% }); %>
+  </div>
+</div>
+
+<% include ../partials/footer %>

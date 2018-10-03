@@ -1,0 +1,29 @@
+.jumbotron {
+  background-color: #343a40;
+  color: white;
+}
+
+#new-form {
+  width: 30%;
+  margin: 25px auto;
+}
+
+h1 {
+  margin-top: 30px;
+}
+
+.btn-primary {
+  background-color: rgb(231, 92, 27);
+  border-color: rgb(231, 92, 27);
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: rgb(235, 118, 64);
+  border-color: rgb(231, 92, 27);
+}
+
+.delete-form {
+  display: inline;
+}
+
