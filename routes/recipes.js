@@ -20,7 +20,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
   var author = {
     id: req.user._id,
     username: req.user.username
-};
+  };
 
   var newRecipe = {
     name: name,

@@ -1,0 +1,52 @@
+/* body {
+  background: url("../img/homepage/brooke-lark-385507-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+} */
+
+html {
+  height: 100%;
+}
+
+.home {
+  background: url("../img/homepage/brooke-lark-385507-unsplash.jpg");
+  /* erika-lanpher-276294-unsplash.jpg */
+  background-size: cover;
+  background-position: center;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #de3412;
+  border-color: #de3412;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #a0250c;
+  border-color: #861f0b;
+}
+
+.btn-link {
+  color: #013975;
+  text-decoration: underline;
+}
+
+#content {
+  text-align: center;
+  padding-top: 20%;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+hr {
+  width: 310px;
+  border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #ffffff;
+}
