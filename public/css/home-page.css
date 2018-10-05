@@ -1,16 +1,9 @@
-/* body {
-  background: url("../img/homepage/brooke-lark-385507-unsplash.jpg");
-  background-size: cover;
-  background-position: center;
-} */
-
 html {
   height: 100%;
 }
 
 .home {
   background: url("../img/homepage/brooke-lark-385507-unsplash.jpg");
-  /* erika-lanpher-276294-unsplash.jpg */
   background-size: cover;
   background-position: center;
 }
@@ -48,5 +41,5 @@ p {
 hr {
   width: 310px;
   border-top: 1px solid #8c8b8b;
-	border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
 }
