@@ -37,7 +37,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-mongoose.connect("mongodb://localhost:27017/murzilla", {useNewUrlParser: true});
+var databaseUrl = process.env.DATABASEURL || "mongodb://localhost:27017/murzilla";
+mongoose.connect(databaseUrl, {useNewUrlParser: true});
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -51,13 +52,3 @@ app.use("/recipes/:id/comments", commentRoutes);
 
 
 app.listen(3000);
-
-// add landing page
-// add recipes page that list all recipes with images
-// include bootstrap with cdn link
-// setup new campground post route
-// add in body-parser
-// setup route to show form
-// add basic unstyled form
-
-// there are conventions name rest on how to name routes
