@@ -27,3 +27,18 @@ h1 {
   display: inline;
 }
 
+/* styles for show recipe page  */
+.main-col {
+  width: 60%;
+  margin: 25px auto;
+}
+
+#recipe-content {
+  margin: 25px auto;
+  padding: 10px auto;
+}
+
+.broken-at-newline {
+  white-space: pre-line;
+}
+

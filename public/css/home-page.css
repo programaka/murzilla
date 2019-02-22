@@ -21,21 +21,17 @@ html {
 }
 
 .btn-link {
-  color: #013975;
-  text-decoration: underline;
+  color: #304735;
+  font-size: 1.4em;
+}
+
+.btn-link:hover {
+  color: #101811;
 }
 
 #content {
   text-align: center;
   padding-top: 20%;
-}
-
-h1 {
-  font-size: 3em;
-}
-
-p {
-  font-size: 1.5em;
 }
 
 hr {

@@ -3,51 +3,60 @@
 <% include ../partials/navbar %>
 <% include ../partials/alerts %>
 
-<h1><%= recipe.name %></h1>
 
-<% if (recipe.image.startsWith("img/")) { %>
-  <% recipe.image = '/' + recipe.image; %>
-<% } %>
+<div class="container">
+  <div class="main-col">
+    <h1 class="text-center"><%= recipe.name %></h1>
 
-<img src=<%= recipe.image %>>
+    <% if (recipe.image.startsWith("img/")) { %>
+      <% recipe.image = '/' + recipe.image; %>
+    <% } %>
 
-<p><%= recipe.ingredients %></p>
-<p><%= recipe.description %></p>
+    <img src=<%= recipe.image %> class="img-fluid">
 
-<p>
-  <em>Submitted By <%= recipe.author.username %></em>
-</p>
-
-<% if (currentUser && recipe.author.id.equals(currentUser._id)) { %>
-  <a class="btn btn-warning" href="/recipes/<%= recipe._id %>/edit">Edit</a>
-  <form class="delete-form" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-    <button class="btn btn-danger">Delete Recipe</button>
-  </form>
-<% } %>
-
-<p>
-  <a class="btn btn-success" href="/recipes/<%= recipe._id %>/comments/new">Add New Comment</a>
-</p>
-
-<% recipe.comments.forEach(function(comment) { %>
-  <div class="row">
-    <div class="col-md-12">
-      <strong><%= comment.author.username %></strong>
-      <span class="pull-right">10 days ago</span>
-      <p>
-        <%= comment.text %>
+    <div id="recipe-content">
+      <h2>Ingredients</h2>
+      <p class="broken-at-newline"><%= recipe.ingredients %></p>
+      <h2>How to make</h2>
+      <p class="broken-at-newline"><%= recipe.description %></p>
+  
+      <p class="text-right">
+        <em>Submitted By <%= recipe.author.username %></em>
       </p>
-      <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
-        <a class="btn btn-warning"
-          href="/recipes/<%= recipe._id %>/comments/<%= comment._id %>/edit">
-          Edit
-        </a>
-        <form class="delete-form" action="/recipes/<%= recipe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-          <button class="btn btn-danger">Delete</button>
-        </form>
-      <% } %>
     </div>
+
+    <% if (currentUser && recipe.author.id.equals(currentUser._id)) { %>
+      <a class="btn btn-warning" href="/recipes/<%= recipe._id %>/edit">Edit</a>
+      <form class="delete-form" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger">Delete Recipe</button>
+      </form>
+    <% } %>
+
+    <p>
+      <a class="btn btn-success" href="/recipes/<%= recipe._id %>/comments/new">Add New Comment</a>
+    </p>
+
+    <% recipe.comments.forEach(function(comment) { %>
+      <div class="row">
+        <div class="col-md-12">
+          <strong><%= comment.author.username %></strong>
+          <span class="pull-right">10 days ago</span>
+          <p>
+            <%= comment.text %>
+          </p>
+          <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+            <a class="btn btn-warning"
+              href="/recipes/<%= recipe._id %>/comments/<%= comment._id %>/edit">
+              Edit
+            </a>
+            <form class="delete-form" action="/recipes/<%= recipe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-danger">Delete</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    <% }) %>
   </div>
-<% }) %>
+</div>
 
 <% include ../partials/footer %>
