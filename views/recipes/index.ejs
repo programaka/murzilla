@@ -19,11 +19,12 @@
       <div class="col-lg-4 col-sm-6">
         <figure class="figure">
           <!-- img-thumbnail class is another option to use for img -->
-          <img class="figure-img img-fluid rounded" src=<%= recipe.image %>>
-          <figcaption class="figure-caption text-center"><%= recipe.name %></figcaption>
-          <p class="text-center">
-            <a href="/recipes/<%= recipe._id %>" class="btn-link">More Info</a>
-          </p>
+          <a href="/recipes/<%= recipe._id %>">
+              <img class="figure-img img-fluid rounded" src=<%= recipe.image %>>
+          </a>
+          <figcaption class="figure-caption text-center">
+            <a class="btn-link" href="/recipes/<%= recipe._id %>"><%= recipe.name %></a>
+          </figcaption>
         </figure>
       </div>
     
