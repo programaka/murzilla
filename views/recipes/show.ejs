@@ -8,11 +8,7 @@
   <div class="main-col">
     <h1 class="text-center"><%= recipe.name %></h1>
 
-    <% if (recipe.image.startsWith("img/")) { %>
-      <% recipe.image = '/' + recipe.image; %>
-    <% } %>
-
-    <img src=<%= recipe.image %> class="img-fluid">
+    <img src="/recipes/images/<%= recipe.imageId %>" class="img-fluid">
 
     <div id="recipe-content">
       <h2>Ingredients</h2>

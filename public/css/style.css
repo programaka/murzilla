@@ -42,3 +42,38 @@ h1 {
   white-space: pre-line;
 }
 
+/* styles for image upload input field */
+.input-container {
+  margin: 2em auto;
+  background-color: #EDEDED;
+  border: 1px solid #DFDFDF;
+  border-radius: 5px;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.file-info {
+  font-size: 0.9em;
+}
+
+.browse-btn {
+  background: #03A595;
+  color: #fff;
+  min-height: 35px;
+  padding: 10px;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  outline: none;
+}
+
+/* to remove the blue border */
+.browse-btn:focus {
+  outline: 0;
+}
+
+.browse-btn:hover {
+  background: #4ec0b4;
+}

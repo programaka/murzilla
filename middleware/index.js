@@ -1,7 +1,30 @@
 // all the middleware goes here
 var middlewareObj = {};
 var Recipe = require("../models/recipe");
+var RecipeImage = require("../models/recipeImage");
 var Comment = require("../models/comment");
+var mongoose = require("mongoose");
+
+
+middlewareObj.saveImage = function(req, res, next) {
+  var imageBuffer = req.file.buffer;
+  var imageId = mongoose.Types.ObjectId();
+
+  res.locals.imageId = imageId;
+
+  var image = {
+    _id: imageId,
+    image: imageBuffer
+  };
+
+  RecipeImage.create(image, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      next();
+    }
+  });
+};
 
 middlewareObj.checkRecipeOwnership = function(req, res, next) {
   // is user logged in

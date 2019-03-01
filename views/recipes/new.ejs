@@ -7,13 +7,17 @@
   <h1 class="text-center">Post a New Recipe</h1>
   
   <div id="new-form">
-    <form action="/recipes" method="POST">
+    <form action="/recipes" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="name">Recipe name</label>
         <input class="form-control" type="text" name="name" id="name">
       </div>
-      <div class="form-group">
-        <input class="form-control" type="text" name="image" placeholder="image url">
+      <div class="input-container">
+        <input type="file" accept="image/*" id="real-input" name="image">
+        <button type="button" class="browse-btn">
+          Browse Files
+        </button>
+        <span class="file-info">Upload an image</span>
       </div>
       <div class="form-group">
         <label for="ingredients">Ingredients</label>
@@ -32,4 +36,5 @@
   </div>
 </div>
 
+<script type="text/javascript" src="/js/uploadImage.js"></script>
 <% include ../partials/footer %>
