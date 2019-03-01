@@ -1,7 +1,33 @@
 var express = require("express");
 var router = express.Router();
 var Recipe = require("../models/recipe");
+var RecipeImage = require("../models/recipeImage");
 var middleware = require("../middleware/index.js");
+var multer = require("multer");
+
+var storage = multer.memoryStorage();
+
+var imageFilter = function (req, file, cb) {
+  // accept image files only
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+    return cb(new Error("Only image files are allowed!"), false);
+  }
+  cb(null, true);
+};
+
+var upload = multer({ storage: storage, fileFilter: imageFilter });
+
+// GET RECIPE'S IMAGE ROUTE
+router.get("/images/:id", function(req, res) {
+  RecipeImage.findById(req.params.id).exec(function(err, foundRecipeImage) {
+    if (err || !foundRecipeImage) {
+      req.flash("error", "Recipe image not found");
+      res.redirect("back");
+    } else {
+      res.send(foundRecipeImage.image);
+    }
+  });
+});
 
 router.get("/", function(req, res) {
   Recipe.find({}, function(err, allRecipes) {
@@ -13,9 +39,9 @@ router.get("/", function(req, res) {
   });
 });
 
-router.post("/", middleware.isLoggedIn, function(req, res) {
+// ADD NEW RECIPE ROUTE
+router.post("/", middleware.isLoggedIn, upload.single("image"), middleware.saveImage, function(req, res) {
   var name = req.body.name;
-  var image = req.body.image;
   var ingredients = req.body.ingredients;
   var description = req.body.description;
   var author = {
@@ -25,14 +51,14 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 
   var newRecipe = {
     name: name,
-    image: image,
     ingredients: ingredients,
     description: description,
-    author: author
+    author: author,
+    imageId: res.locals.imageId
   };
 
   // create a new recipe and save to DB
-  Recipe.create(newRecipe, function(err, newlyCreated) {
+  Recipe.create(newRecipe, function(err) {
     if (err) {
       console.log(err);
     } else {
@@ -45,7 +71,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
   res.render("recipes/new");
 });
 
-// SHOW RECIPE ROUTE
+// SHOW RECIPE PAGE ROUTE
 router.get("/:id", function(req, res) {
   Recipe.findById(req.params.id).populate("comments").exec(function(err, foundRecipe) {
     if (err || !foundRecipe) {
@@ -57,7 +83,7 @@ router.get("/:id", function(req, res) {
   });
 });
 
-// EDIT RECIPE ROUTE
+// EDIT RECIPE PAGE ROUTE
 router.get("/:id/edit", middleware.checkRecipeOwnership, function(req, res) {
   Recipe.findById(req.params.id, function(err, foundRecipe) {
     res.render("recipes/edit", {recipe: foundRecipe});
@@ -65,11 +91,22 @@ router.get("/:id/edit", middleware.checkRecipeOwnership, function(req, res) {
 });
 
 // UPDATE RECIPE ROUTE
-router.put("/:id", middleware.checkRecipeOwnership, function(req, res) {
+router.put("/:id", middleware.checkRecipeOwnership, upload.single("image"), function(req, res) {
   // find and update the correct recipe
   Recipe.findByIdAndUpdate(req.params.id, req.body.recipe, function(err, updatedRecipe) {
     if (err) {
+      console.log(err);
       res.redirect("/recipes");
+    // update the image if an image is provided
+    } else if (req.file) {
+      RecipeImage.findByIdAndUpdate(updatedRecipe.imageId, {image: req.file.buffer}, function(err) {
+        if (err) {
+          console.log(err);
+          res.redirect("/recipes");
+        } else {
+          res.redirect("/recipes/" + req.params.id);
+        }
+      });
     } else {
       res.redirect("/recipes/" + req.params.id);
     }
@@ -78,10 +115,12 @@ router.put("/:id", middleware.checkRecipeOwnership, function(req, res) {
 
 // DESTROY RECIPE ROUTE
 router.delete("/:id", middleware.checkRecipeOwnership, function(req, res) {
-  Recipe.findByIdAndRemove(req.params.id, function(err) {
+  Recipe.findById(req.params.id, function(err, recipe) {
     if (err) {
       res.redirect("/recipes");
     } else {
+      // needed to call remove on the document object to fire pre hook (was not firing on the model)
+      recipe.remove();
       res.redirect("/recipes");
     }
   });
