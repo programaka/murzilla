@@ -17,12 +17,6 @@ var imageFilter = function (req, file, cb) {
 
 var upload = multer({ storage: storage, fileFilter: imageFilter });
 
-// var storage = multer.diskStorage({
-//   filename: function(req, file, callback) {
-//     callback(null, Date.now() + file.originalname);
-//   }
-// });
-
 // GET RECIPE'S IMAGE ROUTE
 router.get("/images/:id", function(req, res) {
   RecipeImage.findById(req.params.id).exec(function(err, foundRecipeImage) {
