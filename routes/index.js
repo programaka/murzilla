@@ -20,7 +20,7 @@ router.post("/register", function(req, res) {
       res.redirect("/register");
     }
     passport.authenticate("local")(req, res, function() {
-      req.flash("success", "Welcome to Murzilla " + user.username);
+      req.flash("success", "Welcome to Murzilla, " + user.username + "!");
       res.redirect("/recipes");
     });
   });

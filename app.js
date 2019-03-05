@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-var databaseUrl = process.env.DATABASEURL || "mongodb://localhost:27017/murzilla";
+const databaseUrl = process.env.DATABASEURL || "mongodb://localhost:27017/murzilla";
 mongoose.connect(databaseUrl, {useNewUrlParser: true});
 
 app.set("view engine", "ejs");
@@ -54,5 +54,5 @@ app.use("/", indexRoutes);
 app.use("/recipes", recipeRoutes);
 app.use("/recipes/:id/comments", commentRoutes);
 
-
-app.listen(3000);
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`app listening on port ${port}`));
