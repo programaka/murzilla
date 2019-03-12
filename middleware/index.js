@@ -7,14 +7,16 @@ var mongoose = require("mongoose");
 
 
 middlewareObj.saveImage = function(req, res, next) {
-  var imageBuffer = req.file.buffer;
-  var imageId = mongoose.Types.ObjectId();
+  // remove the base64 prefex and convert the string to binary
+  // the cropped image is passed in a hidden field of the form
+  var imgBlob = Buffer.from(req.body.croppedImg64.substr("data:image/jpeg;base64".length), "base64");
 
+  var imageId = mongoose.Types.ObjectId();
   res.locals.imageId = imageId;
 
   var image = {
     _id: imageId,
-    image: imageBuffer
+    image: imgBlob
   };
 
   RecipeImage.create(image, function(err) {
