@@ -1,7 +1,3 @@
-html {
-  height: 100%;
-}
-
 .home {
   background: url("../img/homepage/brooke-lark-385507-unsplash.jpg");
   background-size: cover;
@@ -21,17 +17,30 @@ html {
 }
 
 .btn-link {
-  color: #304735;
-  font-size: 1.4em;
+  font-size: 1.25em;
 }
 
 .btn-link:hover {
   color: #101811;
 }
 
+/* to place content in the middle of the screen vertically */
 #content {
+  position: relative;
+  top: 40%;
+  transform: translateY(-60%);
+}
+
+.centered-container {
+  margin: 20px auto;
+  height: 100vh;
   text-align: center;
-  padding-top: 20%;
+  width: 50%;
+}
+
+#home-page-slogan {
+  font-size: 1.15rem;
+  font-weight: 450;
 }
 
 hr {
