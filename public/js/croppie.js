@@ -1470,6 +1470,13 @@
         drawCanvas(canvas, self.elements.img, self.data.orientation);
         _updateCenterPoint.call(self, true);
         _updateZoomLimits.call(self);
+
+        // https://github.com/Foliotek/Croppie/issues/293 by JonathonRichar
+        if ((deg % 180) !== 0) {
+          var lastOriginalHeight = this._originalImageHeight;
+          this._originalImageHeight = this._originalImageWidth;
+          this._originalImageWidth = lastOriginalHeight;
+        }
     }
 
     function _destroy() {
