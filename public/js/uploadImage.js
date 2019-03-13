@@ -94,7 +94,6 @@ cropBtn.addEventListener("click", function() {
     return;
   }
 
-  console.log(resetBtn.style.display + "setting to null");
   resetBtn.style.display = "inline";
   cropBtn.style.display = "none";
   rotateBtn.style.display = "none";

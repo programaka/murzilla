@@ -98,7 +98,6 @@ router.put("/:id", middleware.checkRecipeOwnership, upload.single("image"), func
       console.log(err);
       res.redirect("/recipes");
     // update the image if an image is provided
-    // } else if (req.file) {
     } else if (req.body.croppedImg64) {
       var imgBlob = Buffer.from(req.body.croppedImg64.substr("data:image/jpeg;base64".length), "base64");
       RecipeImage.findByIdAndUpdate(updatedRecipe.imageId, {image: imgBlob}, function(err) {
