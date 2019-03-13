@@ -68,3 +68,27 @@ input[type='file'] {
 .edit-img-toolbar {
   margin: 1.5em auto;
 }
+
+.crop-btn {
+  display: none;
+}
+
+.rotate-btn {
+  display: none;
+}
+
+.reset-btn {
+  display: none;
+}
+
+#edit-section {
+  display: flex;
+}
+
+#dlt-recipe-form {
+  margin-left: auto;
+}
+
+#comment-section {
+  margin-top: 40px;
+}

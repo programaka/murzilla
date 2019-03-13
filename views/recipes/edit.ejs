@@ -18,6 +18,13 @@
         </button>
         <span class="file-info">Upload an image</span>
       </div>
+      <div id="croppie-area"></div>
+      <input id="cropped-img" name="croppedImg64" type="hidden">
+      <div class="edit-img-toolbar">
+        <button type="button" class="crop-btn btn btn-info">Crop</button>
+        <button type="button" class="rotate-btn btn btn-outline-info" data-deg="-90">Rotate Right</button>
+        <button type="button" class="reset-btn btn btn-info">Reset</button>
+      </div>
       <div class="form-group">
         <label for="ingredients">Ingredients</label>
         <textarea class="form-control" id="ingredients" name="recipe[ingredients]"><%= recipe.ingredients %></textarea>
@@ -27,7 +34,7 @@
         <textarea class="form-control" id="description" name="recipe[description]"><%= recipe.description %></textarea>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Submit</button>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
       </div>
     </form>
 
@@ -35,5 +42,6 @@
   </div>
 </div>
 
+<script src="/js/croppie.js"></script>
 <script type="text/javascript" src="/js/uploadImage.js"></script>
 <% include ../partials/footer %>

@@ -11,6 +11,9 @@ uploadButton.addEventListener("click", () => {
 realInput.addEventListener("change", () => {
   const name = realInput.value.split(/\\|\//).pop();
   fileInfo.innerHTML = name;
+  resetBtn.style.display = "none";
+  cropBtn.style.display = "inline";
+  rotateBtn.style.display = "inline";
   previewImg();
 });
 
@@ -34,7 +37,7 @@ function previewImg() {
   var croppieArea = document.getElementById("croppie-area");
   var preview = document.createElement("img");
   preview.setAttribute("id", "recipe-img");
-  preview.setAttribute("width", "700px");
+  preview.setAttribute("width", "800px");
   croppieArea.appendChild(preview);
   
   var file = document.querySelector("input[type=file]").files[0];
@@ -62,8 +65,9 @@ function croppify(src) {
   recipeCroppie = new Croppie(cropImage, {
     viewport: { width: 600, height: 600 },
     boundary: { width: 700, height: 700 },
-    showZoomer: false,
-    enableOrientation: true
+    showZoomer: true,
+    enableOrientation: true,
+    enforceBoundary: true
   });
 
   recipeCroppie.bind({
@@ -72,12 +76,27 @@ function croppify(src) {
   });
 }
 
-document.querySelector(".crop-btn").addEventListener("click", function() {
+var resetBtn = document.querySelector(".reset-btn");
+var cropBtn = document.querySelector(".crop-btn");
+var rotateBtn = document.querySelector(".rotate-btn");
+
+resetBtn.addEventListener("click", function() {
+  resetBtn.style.display = "none";
+  cropBtn.style.display = "inline";
+  rotateBtn.style.display = "inline";
+  previewImg();
+});
+
+cropBtn.addEventListener("click", function() {
   // for some reason when I upload a diff image and click on crop, the click event
   // executes twice
   if (recipeCroppie == null) {
     return;
   }
+
+  resetBtn.style.display = "inline";
+  cropBtn.style.display = "none";
+  rotateBtn.style.display = "none";
 
   recipeCroppie.result({
     type: "base64",
@@ -103,6 +122,6 @@ document.querySelector(".crop-btn").addEventListener("click", function() {
   });
 });
 
-document.querySelector(".rotate-btn").addEventListener("click", function() {
+rotateBtn.addEventListener("click", function() {
   recipeCroppie.rotate(this.getAttribute("data-deg"));
 });
