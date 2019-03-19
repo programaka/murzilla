@@ -15,7 +15,11 @@ var imageFilter = function (req, file, cb) {
   cb(null, true);
 };
 
-var upload = multer({ storage: storage, fileFilter: imageFilter });
+var upload = multer({ 
+  storage: storage,
+  fileFilter: imageFilter,
+  limits: { fieldSize: 25 * 1024 * 1024 }
+});
 
 // GET RECIPE'S IMAGE ROUTE
 router.get("/images/:id", function(req, res) {
