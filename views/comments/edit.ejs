@@ -6,7 +6,7 @@
 <div class="container">
   <h1 class="text-center">Edit Comment</h1>
   
-  <div id="new-form">
+  <div class="col-sm-12 main-col">
     <form action="/recipes/<%= recipe_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
       <div class="form-group">
         <input class="form-control" type="text" name="comment[text]" value="<%= comment.text %>">
