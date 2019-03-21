@@ -1,5 +1,5 @@
 <!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" href="/">Murzilla</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
               <li><a class="nav-link" href="/login"><i class="fas fa-user"></i> Login</a></li>
               <li><a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Sign Up</a></li>
         <% } else { %>
-              <li><span class="navbar-text disabled">Signed in as <%= currentUser.username %></span></li>
+              <li><span class="navbar-text disabled">Signed in as <span id="navbar-username"><%= currentUser.username %></span></span></li>
               <li><a class="nav-link" href="/logout">Logout</a></li>
         <% } %>
       </ul>

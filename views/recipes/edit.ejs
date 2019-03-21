@@ -4,7 +4,7 @@
 <% include ../partials/alerts %>
 
 <div class="container">
-  <div id="new-form">
+  <div class="col-sm-12 main-col">
     <h1 class="text-center">Edit <%= recipe.name %></h1>
     <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
       <div class="form-group">

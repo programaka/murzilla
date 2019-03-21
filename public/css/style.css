@@ -9,8 +9,14 @@
 }
 
 #login-signup-form {
-  width: 30%;
-  margin: 25px auto;
+  margin-top: 25px;
+}
+
+@media (min-width: 350px) {
+  #login-signup-form {
+    width: 300px;
+    margin: 25px auto;
+  }
 }
 
 .btn-primary {
@@ -30,8 +36,14 @@
 
 /* styles for show recipe page  */
 .main-col {
-  width: 60%;
-  margin: 25px auto;
+  margin-top: 25px;
+}
+
+@media (min-width: 768px) {
+  .main-col {
+    width: 600px;
+    margin: 25px auto;
+  }
 }
 
 #recipe-content {
@@ -91,4 +103,20 @@ input[type='file'] {
 
 #comment-section {
   margin-top: 40px;
+}
+
+/* all recipes page */
+.figure {
+  margin: 0 0 2rem;
+}
+
+/* navbar */
+#navbar-username {
+  color: #1bc9e4;
+  margin-right: 10px;
+}
+
+/* links */
+.btn-link {
+  color: #3a3f44;
 }
