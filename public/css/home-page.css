@@ -43,7 +43,15 @@
 }
 
 hr {
-  width: 310px;
+  max-width: 310px;
   border-top: 1px solid #8c8b8b;
   border-bottom: 1px solid #ffffff;
+}
+
+#post-recipe-btn {
+  margin: 5px auto;
+}
+
+#view-recipes-btn {
+  margin: 5px auto;
 }
