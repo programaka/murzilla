@@ -23,6 +23,5 @@ Web application for sharing recipes http://murzilla.com
 ## Back-End
 * JavaScript, Node.js, Express
 * MongoDB
-* Git/Bitbucket, moved to GitHub
-* Google Cloud Platform (Compute Engine)
 
+Hosted on Google Cloud Platform
